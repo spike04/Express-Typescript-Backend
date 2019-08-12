@@ -1,10 +1,9 @@
-import * as express from 'express'
-import Category from './category.interface'
-import categoryModel from './category.model'
+import express, { Router, Request, Response } from 'express'
+import categoryModel, { ICategory } from './category.model'
 
 class CategoryController {
   public path = '/category'
-  public router = express.Router()
+  public router: express.Router = Router()
   private category = categoryModel
 
   constructor() {
@@ -19,31 +18,22 @@ class CategoryController {
     this.router.post(this.path, this.createACategory)
   }
 
-  private getAllCategories = (
-    _request: express.Request,
-    response: express.Response
-  ) => {
+  private getAllCategories = (_request: Request, response: Response) => {
     this.category.find().then(categories => {
       response.send(categories)
     })
   }
 
-  private getCategoryById = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private getCategoryById = (request: Request, response: Response) => {
     const id = request.params.id
     this.category.findById(id).then(category => {
       response.send(category)
     })
   }
 
-  private modifyPost = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private modifyPost = (request: Request, response: Response) => {
     const id = request.params.id
-    const categoryData: Category = request.body
+    const categoryData: ICategory = request.body
     this.category
       .findByIdAndUpdate(id, categoryData, { new: true })
       .then(category => {
@@ -51,21 +41,15 @@ class CategoryController {
       })
   }
 
-  private createACategory = (
-    request: express.Request,
-    response: express.Response
-  ) => {
-    const categoryData: Category = request.body
+  private createACategory = (request: Request, response: Response) => {
+    const categoryData: ICategory = request.body
     const createCategory = new this.category(categoryData)
     createCategory.save().then(savedCategory => {
       response.send(savedCategory)
     })
   }
 
-  private deletePost = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private deletePost = (request: Request, response: Response) => {
     const id = request.params.id
     this.category.findByIdAndDelete(id).then(successResponse => {
       if (successResponse) response.send(200)

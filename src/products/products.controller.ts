@@ -1,11 +1,10 @@
-import * as express from 'express'
-import Product from './products.interface'
-import productModel from './products.model'
+import express, { Router, Request, Response } from 'express'
+import Product, { IProduct } from './products.model'
 
 class CategoryController {
   public path = '/product'
-  public router = express.Router()
-  private product = productModel
+  public router: Router = Router()
+  private product = Product
 
   constructor() {
     this.initializeRoutes()
@@ -19,31 +18,22 @@ class CategoryController {
     this.router.post(this.path, this.createAProduct)
   }
 
-  private getAllProducts = (
-    _request: express.Request,
-    response: express.Response
-  ) => {
+  private getAllProducts = (_request: Request, response: Response) => {
     this.product.find().then(products => {
       response.send(products)
     })
   }
 
-  private getProductById = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private getProductById = (request: Request, response: Response) => {
     const id = request.params.id
     this.product.findById(id).then(product => {
       response.send(product)
     })
   }
 
-  private modifyProduct = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private modifyProduct = (request: Request, response: Response) => {
     const id = request.params.id
-    const productData: Product = request.body
+    const productData: IProduct = request.body
     this.product
       .findByIdAndUpdate(id, productData, { new: true })
       .then(product => {
@@ -51,21 +41,15 @@ class CategoryController {
       })
   }
 
-  private createAProduct = (
-    request: express.Request,
-    response: express.Response
-  ) => {
-    const productData: Product = request.body
+  private createAProduct = (request: Request, response: Response) => {
+    const productData: IProduct = request.body
     const createProduct = new this.product(productData)
     createProduct.save().then(savedProduct => {
       response.send(savedProduct)
     })
   }
 
-  private deleteProduct = (
-    request: express.Request,
-    response: express.Response
-  ) => {
+  private deleteProduct = (request: Request, response: Response) => {
     const id = request.params.id
     this.product.findByIdAndDelete(id).then(successResponse => {
       if (successResponse) response.send(200)

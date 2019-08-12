@@ -4,7 +4,7 @@
   "description": "Inventory Management System",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpileOnly ./src/server.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly  ./src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,8 @@
     "passport-jwt": "^4.0.0",
     "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.40",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -33,6 +34,8 @@
     "@types/mongoose": "^5.5.12",
     "@types/morgan": "^1.7.36",
     "@types/passport": "^1.0.0",
-    "@types/passport-jwt": "^3.0.1"
+    "@types/passport-jwt": "^3.0.1",
+    "@types/validator": "^10.11.2",
+    "nodemon": "^1.19.1"
   }
 }
