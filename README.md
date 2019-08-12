@@ -19,27 +19,33 @@ with @types for dependencies
 ---
 
 ## Folder Structure
-- __IMS__
+
+- **IMS**
   - [README.md](IMS/README.md)
-  - [node_modules](IMS/node_modules)
-  - __src__
-    - [app.ts](IMS/src/app.ts)
-    - __products__
-      - [products.interface.ts](IMS/src/products/products.interface.ts)
+  - [package.json](IMS/package.json)
+  - **src**
+    - **categories**
+      - [categories.controller.ts](IMS/src/categories/categories.controller.ts)
+      - [category.model.ts](IMS/src/categories/category.model.ts)
+    - [server.ts](IMS/src/server.ts)
+    - **products**
       - [products.controller.ts](IMS/src/products/products.controller.ts)
       - [products.model.ts](IMS/src/products/products.model.ts)
-    - __categories__
-      - [category.model.ts](IMS/src/categories/category.model.ts)
-      - [category.interface.ts](IMS/src/categories/category.interface.ts)
-      - [categories.controller.ts](IMS/src/categories/categories.controller.ts)
-    - [server.ts](IMS/src/server.ts)
-    - __utils__
+    - **users**
+      - [user.validator.ts](IMS/src/users/user.validator.ts)
+      - [users.model.ts](IMS/src/users/users.model.ts)
+      - [users.controller.ts](IMS/src/users/users.controller.ts)
+    - [app.ts](IMS/src/app.ts)
+    - **utils**
+      - [helpers.ts](IMS/src/utils/helpers.ts)
+      - [passport.ts](IMS/src/utils/passport.ts)
       - [validateEnv.ts](IMS/src/utils/validateEnv.ts)
-  - [package.json](IMS/package.json)
+      - [variables.ts](IMS/src/utils/variables.ts)
   - [tsconfig.json](IMS/tsconfig.json)
 
 ## TODOS
-- Authentication using bcrypt and jsonwebtoken
+
+- ~~Authentication using bcrypt and jsonwebtoken~~
 - Authorization for Role Based Access
 - File Handling
-etc ...
+  etc ...
