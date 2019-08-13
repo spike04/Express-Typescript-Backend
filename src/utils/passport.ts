@@ -12,7 +12,6 @@ export default function(passport: any) {
         secretOrKey: SECRET
       },
       (jwt_payload, done) => {
-        console.log(jwt_payload)
         User.findById(jwt_payload.id)
           .then((user: any) => {
             // Removing Password Field
