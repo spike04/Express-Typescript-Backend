@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.10.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "envalid": "^5.0.0",

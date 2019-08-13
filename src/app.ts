@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import passport from 'passport'
 
 import { MONGO_PATH, PORT } from './utils/variables'
+import errorMiddleware from './middlewares/error.middleware'
 
 class App {
   public app: express.Application
@@ -16,6 +17,7 @@ class App {
     this.connectToTheDatabase()
     this.initializeMiddleware()
     this.initializeController(controllers)
+    this.initializeErrorHandling()
   }
 
   private initializeMiddleware() {
@@ -30,6 +32,10 @@ class App {
     import('./utils/passport').then(passportConfig =>
       passportConfig.default(passport)
     )
+  }
+
+  private initializeErrorHandling() {
+    this.app.use(errorMiddleware)
   }
 
   private connectToTheDatabase() {
